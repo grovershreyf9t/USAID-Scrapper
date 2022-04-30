@@ -5,6 +5,11 @@ import requests
 import config
 
 def fetch_results(fetch_base_url, fetch_exts, menu_scraper, links_scraper):
+    # Function to fetch menu and page link results
+    # Inputs -> fetch_base_url : website domain name
+    #           fetch_exts : list of website paths to fetch results from
+    #           menu_scraper : trained Autoscraper object to fetch menu results
+    #           links_scraper : trained Autoscraper object to fetch page link results
     
     results_tree = dict()
     
@@ -28,6 +33,9 @@ def fetch_results(fetch_base_url, fetch_exts, menu_scraper, links_scraper):
     return results_tree
 
 def prune_results(results_tree):
+# Function to prune (remove duplicate results) from the results tree
+# Inputs -> results_tree : json results tree to be pruned
+
     result_tree_pruned = dict()
     for m_k,m_v in results_tree.items():
         result_tree_pruned[m_k] = dict()
@@ -38,6 +46,10 @@ def prune_results(results_tree):
     return result_tree_pruned
 
 def fetch_grants(pages=2, test_prune=False):
+# Function to fetch entries from grants table
+# Inputs -> pages : number of pages to be fetched
+#           test_prune : True to test additional grants added on temporal basis
+
     id_list = list()
     pages_idxs = [25*i for i in range(pages)]
     for i in pages_idxs:
@@ -56,14 +68,29 @@ def fetch_grants(pages=2, test_prune=False):
 
 
 def getFromDict(dataDict, mapList):
+# Function to fetch a value from a nested dictionary
+# Inputs -> dataDict : dictionary
+#           mapList : list of nested keys
+
     return reduce(operator.getitem, mapList, dataDict)
 
 
 def setInDict(dataDict, mapList, value):
+# Function to write a value to a nested dictionary
+# Inputs -> dataDict : dictionary
+#           mapList : list of nested keys
+#           value : value to be written
+
     getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
 
 
 def convert(added_str, added_dict, results_dict, key, value=None):
+# Function to convert dictionary difference keys to dictionary with key : list of values pairs
+# Inputs -> added_str : DeepDiff's dictionary difference keys output
+#           added_dict : dictionary to which key values pairs need to be added
+#           results_dict : latest results tree
+#           key : DeepDiff's update type (dictionary_item_added / iterable_item_added)
+#           value : value to be written (in case of iterable_item_added)
     if key == 'dictionary_item_added':
         added_str = added_str.replace('root','')
         added_str = added_str.replace('[','')
