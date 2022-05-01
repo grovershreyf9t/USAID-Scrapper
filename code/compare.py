@@ -56,3 +56,12 @@ with open('../states/diff_grants.txt','w') as f:
     for grant in added_grants:
         f.write(grant + '\n')
 
+# Save current menu and page link results as initial states
+with open('../states/last_saved_links.pkl','w') as f:
+    pickle.dump(results_tree_pruned,f)
+
+# Save current grant results as initial states
+with open('../states/last_saved_grants.pkl','w') as f:
+    pickle.dump(added_grants,f)
+
+
