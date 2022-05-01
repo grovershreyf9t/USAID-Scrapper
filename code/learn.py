@@ -2,12 +2,12 @@ import config
 from autoscraper import AutoScraper
 import pickle
 
-# Learn menu scraping
+# Learn menu results scraping
 menu_scraper = AutoScraper()
 for url, wanted_list in config.MENU_DATA:
     menu_scraper.build(url=url,wanted_list=wanted_list)
 
-# Learn sub page link scraping
+# Learn page link results scraping
 links_scraper = AutoScraper()
 for url,wanted_list in config.LINKS_DATA:
     links_scraper.build(url=url,wanted_list=wanted_list,update=True)
