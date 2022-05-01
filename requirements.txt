@@ -1,0 +1,4 @@
+requests==2.27.1
+tqdm==4.62.3
+deepdiff==5.8.0
+autoscraper==1.1.12
