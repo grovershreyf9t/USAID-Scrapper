@@ -23,5 +23,5 @@ The repository contains the following code files :
 * Run ```compare.py``` to get result difference in current and last states which are saved as ```diff_links.json``` and ```diff_grants.txt```. This also updates the ```last_saved_links.pkl``` and ```last_saved_grants.pkl``` files with current results.
 
 **Note:** For testing purposes,following adjustments were made to the code to simulate changes in websites:
-• Some links have been manually hidden in ```fecth.py``` by inputing ```config.FETCH_EXTS[:7]``` instead of ```config.FETCH_EXTS```. Please switch back to the latter to test actual website changes. 
-• Some grant results have been manually hidden in 
+* Some links have been manually hidden in ```fecth.py``` by inputing ```config.FETCH_EXTS[:7]``` instead of ```config.FETCH_EXTS```. Please switch back to the latter to test actual changes. 
+* Some grant results have been manually hidden in ```fetch.py``` by inputting ```test``` argument in```fetch_grants``` function as True. Please turn it to False to test actual changes. 
